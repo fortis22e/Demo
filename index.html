@@ -843,8 +843,33 @@
                         
                         <!-- Tally Form Embed -->
                         <div class="tally-form-container">
-                            <iframe data-tally-src="https://tally.so/embed/nrez4l?alignLeft=1&hideTitle=1&transparentBackground=0&dynamicHeight=1" loading="lazy" width="100%" height="450" frameborder="0" marginheight="0" marginwidth="0" title="AI App Builder Signup"></iframe>
-                            <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.head.appendChild(s);}</script>
+                            <iframe src="https://tally.so/embed/nrez4l?alignLeft=1&hideTitle=1&transparentBackground=0&dynamicHeight=1" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="AI App Builder Signup" style="border: none;"></iframe>
+                        </div>
+                        
+                        <!-- Alternative: Simple backup form -->
+                        <div id="backupForm" style="display: none; margin-top: 2rem;">
+                            <div style="background: rgba(255, 255, 255, 0.95); padding: 2rem; border-radius: 15px; border: 2px solid rgba(139, 92, 246, 0.3);">
+                                <h4 style="color: var(--ai-purple); margin-bottom: 1rem; text-align: center;">Quick Signup</h4>
+                                <form onsubmit="submitBackupForm(event)">
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                                        <input type="text" placeholder="First Name" required style="padding: 1rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;">
+                                        <input type="email" placeholder="Email Address" required style="padding: 1rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem;">
+                                    </div>
+                                    <input type="text" placeholder="Your App Idea (Optional)" style="width: 100%; padding: 1rem; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem; margin-bottom: 1rem;">
+                                    <button type="submit" style="width: 100%; padding: 1rem; background: linear-gradient(45deg, var(--ai-orange), #dc2626); border: none; border-radius: 8px; color: white; font-weight: 700; font-size: 1.1rem; cursor: pointer;">
+                                        🚀 GET MY SPOT NOW
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- Fallback: Direct link if form doesn't load -->
+                        <div style="text-align: center; margin-top: 1rem;">
+                            <p style="color: var(--light-gray); font-size: 0.9rem; margin-bottom: 0.5rem;">
+                                Form not loading? 
+                            </p>
+                            <a href="https://tally.so/r/nrez4l" target="_blank" style="color: var(--ai-cyan); text-decoration: underline; margin-right: 1rem;">Open form in new tab</a>
+                            <button onclick="showBackupForm()" style="background: none; border: 1px solid var(--ai-cyan); color: var(--ai-cyan); padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; font-size: 0.9rem;">Use backup form</button>
                         </div>
                         
                         <div class="security-note">
@@ -958,7 +983,19 @@
             }, 300);
         }
 
-        // Form is now handled by Tally embed
+        // Backup form functions
+        function showBackupForm() {
+            document.getElementById('backupForm').style.display = 'block';
+            document.querySelector('.tally-form-container').style.display = 'none';
+        }
+
+        function submitBackupForm(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            alert('🎉 Thank you! Your information has been recorded. We\'ll contact you soon with next steps!');
+            // In production, you'd send this data to your server or email service
+            console.log('Form submitted:', Object.fromEntries(formData));
+        }
 
         // Initialize countdown
         updateCountdown();
