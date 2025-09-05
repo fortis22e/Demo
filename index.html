@@ -414,6 +414,17 @@
             box-shadow: 0 15px 40px rgba(245, 158, 11, 0.6);
         }
 
+        /* Tally Form Container */
+        .tally-form-container {
+            margin: 1.5rem 0;
+        }
+
+        .tally-form-container iframe {
+            border-radius: 12px;
+            border: 2px solid rgba(139, 92, 246, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
         .security-note {
             display: flex;
             align-items: center;
@@ -823,16 +834,11 @@
                             </div>
                         </div>
                         
-                        <form id="waitlistForm">
-                            <div class="form-grid">
-                                <input type="text" class="form-input" placeholder="First Name" required>
-                                <input type="email" class="form-input" placeholder="Email Address" required>
-                            </div>
-                            <input type="text" class="form-input" placeholder="Your App Idea (Optional)" style="grid-column: 1 / -1;">
-                            <button type="submit" class="mega-cta-button">
-                                🔥 CLAIM MY 50% DISCOUNT NOW
-                            </button>
-                        </form>
+                        <!-- Tally Form Embed -->
+                        <div class="tally-form-container">
+                            <iframe data-tally-src="https://tally.so/embed/nrez4l?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0" title="AI App Builder Signup"></iframe>
+                            <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.head.appendChild(s);}</script>
+                        </div>
                         
                         <div class="security-note">
                             <span>🔒</span>
@@ -945,31 +951,7 @@
             }, 300);
         }
 
-        // Form submission
-        document.getElementById('waitlistForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const button = this.querySelector('.mega-cta-button');
-            const originalText = button.innerHTML;
-            
-            button.innerHTML = '🔄 PROCESSING YOUR SPOT...';
-            button.disabled = true;
-            
-            setTimeout(() => {
-                button.innerHTML = '✅ SPOT SECURED!';
-                button.style.background = 'linear-gradient(45deg, var(--ai-green), #059669)';
-                
-                setTimeout(() => {
-                    alert('🎉 CONGRATULATIONS! You\'ve secured your spot with 50% early bird discount. Check your email for immediate access to the AI App Builder community and bonus materials!');
-                }, 500);
-                
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                    button.disabled = false;
-                    button.style.background = '';
-                }, 3000);
-            }, 2000);
-        });
+        // Form is now handled by Tally embed
 
         // Initialize countdown
         updateCountdown();
