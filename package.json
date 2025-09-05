@@ -1,0 +1,13 @@
+{
+  "name": "ai-app-landing",
+  "version": "1.0.0",
+  "description": "AI-powered app building landing page",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "build": "echo 'Static site - no build required'"
+  },
+  "keywords": ["ai", "app", "landing-page"],
+  "author": "",
+  "license": "MIT"
+}
